@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { addToCart, removeFromCart } from "./redux/cartSlice"
 
-
-export function ProductItem({ product }) {
+export function ProductItem({ product, inCart=false }) {
+    const dispatch = useDispatch()
 
     return (
         <div className="m-2 shadow-cyan-400 gap-3 border-2 border-amber-500 flex items-center">
@@ -11,7 +13,8 @@ export function ProductItem({ product }) {
                 <p>Ratings: {product.rating.rate}</p>
                 
             </div>
-            <button className="btn bg-blue-500">Add to Cart</button>
+            {inCart && <button onClick={() => dispatch(removeFromCart(product.id))} className="btn bg-red-500">Remove Cart</button> }
+            <button onClick={() => dispatch(addToCart(product))} className="btn bg-blue-500">Add to Cart</button>
             <Link to={`/ProductDetails/${product.id}`}><button className="btn bg-blue-500">View details</button></Link>
         </div>
     )

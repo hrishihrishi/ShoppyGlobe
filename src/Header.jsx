@@ -11,7 +11,7 @@ export function Header() {
                 <ul className="flex flex-row text-white text-xl space-x-4 font-bold">
                     <li><Link to='/'>Home</Link></li>
                     <li><Link to='/ProductList'>ProductsList</Link></li>
-                    {/* <li><Link to='/Cart'>Cart</Link></li> */}
+                    <li><Link to='/Cart'>Cart</Link></li>
                 </ul>
             </div>
         </nav>

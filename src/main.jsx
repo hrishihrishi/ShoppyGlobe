@@ -8,24 +8,31 @@ import { Cart } from './Cart';
 import { Header } from './Header';
 import { NotFound } from './NotFound';
 import { ProductDetails } from './ProductDetails.jsx'
+import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
+import store, { persistor } from './redux/store.js'
 
 
 const router = createBrowserRouter([
-    {
-      path: '/',
-      element: <App />,
-      // errorElement: <NotFound />,
-      children: [
-        { path: '/Header', element: <Header /> },
-        { path: '/ProductList', element: <ProductList /> },
-        { path: '/Cart', element: <Cart /> },
-        { path: '/ProductDetails/:id', element: <ProductDetails /> }
-      ]
-    }
-  ])
+  {
+    path: '/',
+    element: <App />,
+    // errorElement: <NotFound />,
+    children: [
+      { path: '/Header', element: <Header /> },
+      { path: '/ProductList', element: <ProductList /> },
+      { path: '/Cart', element: <Cart /> },
+      { path: '/ProductDetails/:id', element: <ProductDetails /> }
+    ]
+  }
+])
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router}/>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <RouterProvider router={router} />
+      </PersistGate>
+    </Provider>
   </StrictMode>,
 )

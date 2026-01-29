@@ -11,6 +11,7 @@ export function ProductList() {
         fetch('https://fakestoreapi.com/products')
             .then(response => response.json())
             .then(data => {
+                // Store the fetched data in the component’s state. 
                 setProducts(data);
                 setLoading(false);
                 console.log(data[0])
