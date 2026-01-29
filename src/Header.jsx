@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export function Header() {
     return (
         <nav className=" bg-blue-400 flex p-2 px-[4vw] rounded-2xl m-3 justify-between">
@@ -7,9 +9,9 @@ export function Header() {
             </div>
             <div className=" flex items-center justify-center">
                 <ul className="flex flex-row text-white text-xl space-x-4 font-bold">
-                    <li>Home</li>
-                    <li>Products</li>
-                    <li>Cart</li>
+                    <li><Link to='/'>Home</Link></li>
+                    <li><Link to='/ProductList'>ProductsList</Link></li>
+                    {/* <li><Link to='/Cart'>Cart</Link></li> */}
                 </ul>
             </div>
         </nav>
