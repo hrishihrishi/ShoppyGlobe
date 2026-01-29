@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { ProductItem } from "./ProductItem"
 
 
 export function ProductList() {
@@ -12,6 +13,7 @@ export function ProductList() {
             .then(data => {
                 setProducts(data);
                 setLoading(false);
+                console.log(data[0])
             })
             .catch(err => {
                 console.log('Error fetching: ', err)
@@ -26,7 +28,7 @@ export function ProductList() {
                     <p>Loading...</p>
                 ) : (
                     products.map((product) => (
-                        <div key={product.id}>{product.title}</div>
+                        <ProductItem key={product.id} product={product} />
                     ))
                 )
             }
