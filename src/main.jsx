@@ -7,6 +7,7 @@ import { ProductList } from './ProductList';
 import { Cart } from './Cart';
 import { Header } from './Header';
 import { NotFound } from './NotFound';
+import { ProductDetails } from './ProductDetails.jsx'
 
 
 const router = createBrowserRouter([
@@ -17,7 +18,8 @@ const router = createBrowserRouter([
       children: [
         { path: '/Header', element: <Header /> },
         { path: '/ProductList', element: <ProductList /> },
-        { path: '/Cart', element: <Cart /> }
+        { path: '/Cart', element: <Cart /> },
+        { path: '/ProductDetails/:id', element: <ProductDetails /> }
       ]
     }
   ])

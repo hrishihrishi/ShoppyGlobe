@@ -9,7 +9,6 @@ export function App() {
   return (
     <div>
       <Header />
-      App app
       <Outlet />
     </div>
   )
