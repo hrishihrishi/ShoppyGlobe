@@ -12,17 +12,30 @@ export function ProductDetails() {
             .then(data => {
                 setProductDetails(data)
                 console.log(data)
-            })
+            }).catch(error => {
+                console.log(error)
+            });
+
 
     }, [])
     return (
         <div className="flex flex-col p-5 bg-blue-50 rounded-xl m-5 gap-1">
             <h1 className="text-2xl font-bold">Product Details:</h1>
-            {productDetails && Object.entries(productDetails).map(([key, value]) => (
-                <div key={key} className="flex gap-1">
-                    <strong className="text-blue-500 underline">{key}:</strong> {typeof value === 'object' ? JSON.stringify(value) : value}
+            <div className="lg:flex">
+                <img src={productDetails?.image} alt={productDetails?.title} className="sm:size-1/10 md:size-1/7 lg:size-1/10 m-4 rounded-xl" />
+                <div className="lg:p-5 lg:text-xl">
+                    <h1 className="text-xl font-bold lg:text-2xl lg:my-5">{productDetails?.title}</h1>
+                    <p> <i>{productDetails?.description}</i></p>
+                    <p className="text-xl text-green-600"> <b>Price: Rs.{productDetails?.price}</b></p>
+                    <p> Category: <b>{productDetails?.category}</b></p>
+                    <p> Rating: <b>{productDetails?.rating.rate}</b></p>
                 </div>
-            ))}
+            </div>
+
+
+            {/* add id to redux slice */}
+            <button className="btn mt-10 bg-blue-500">Add to Cart</button>
+            <button className="btn mt-5 bg-gray-500">Go Back</button>
         </div>
     )
 }
