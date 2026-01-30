@@ -19,7 +19,7 @@ export function ProductDetails() {
                 console.log(error)
             });
     }, [])
-    
+
     return (
         <div className="flex flex-col p-5 bg-blue-50 rounded-xl m-5 gap-1">
             <h1 className="text-2xl font-bold">Product Details:</h1>
