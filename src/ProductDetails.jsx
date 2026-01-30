@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 
 export function ProductDetails() {
     const [productDetails, setProductDetails] = useState();
     const params = useParams();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     console.log(params);
 
     useEffect(() => {
@@ -34,8 +37,8 @@ export function ProductDetails() {
 
 
             {/* add id to redux slice */}
-            <button className="btn mt-10 bg-blue-500">Add to Cart</button>
-            <button className="btn mt-5 bg-gray-500">Go Back</button>
+            <button onClick={() => dispatch(addToCart(product))} className="btn bg-blue-500">Add to Cart</button>
+            <button onClick={() => navigate(-1)} className="btn mt-5 bg-gray-500">Go Back</button>
         </div>
     )
 }
