@@ -13,7 +13,7 @@ export const Cart = () => {
             cartItems.length > 0 ?(cartItems.map(item => {
                 return (
                     <div>
-                        <ProductItem key={item.id} product={item} inCart={true}/>
+                        <ProductItem key={item.id} id={item.id} inCart={true}/>
                     </div>
                 )
             })) : <div className="fixed top-1/4 left-1/4 w-[50%] h-[50%] rounded-2xl flex flex-col items-center justify-center bg-red-300">

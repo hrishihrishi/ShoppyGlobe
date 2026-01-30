@@ -12,6 +12,7 @@ export function Header() {
                     <li><Link to='/'>Home</Link></li>
                     <li><Link to='/ProductList'>ProductsList</Link></li>
                     <li><Link to='/Cart'>Cart</Link></li>
+                    <li><Link to='/YourOrders'>Your Orders</Link></li>
                 </ul>
             </div>
         </nav>

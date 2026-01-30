@@ -54,7 +54,7 @@ export default function PlaceOrder() {
         dispatch(addToOrderedItemsSlice(finalOrder));
 
         alert("Order Placed Successfully!");
-        //navigate("/Cart"); // Or wherever you want to go after ordering
+        navigate("/Cart");
     };
 
 

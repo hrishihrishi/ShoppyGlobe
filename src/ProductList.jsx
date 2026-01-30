@@ -29,7 +29,7 @@ export function ProductList() {
                     <p>Loading...</p>
                 ) : (
                     products.map((product) => (
-                        <ProductItem key={product.id} product={product} />
+                        <ProductItem key={product.id} id={product.id} />
                     ))
                 )
             }
