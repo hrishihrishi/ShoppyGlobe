@@ -15,7 +15,6 @@ export function ProductDetails() {
             .then(data => {
                 // Store the fetched data in the component’s state. 
                 setProductDetails(data)
-                console.log(data)
             }).catch(error => {
                 console.log(error)
             });

@@ -11,6 +11,7 @@ import { ProductDetails } from './ProductDetails.jsx'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import store, { persistor } from './redux/store.js'
+import PlaceOrder from './PlaceOrder.jsx'
 
 
 const router = createBrowserRouter([
@@ -22,7 +23,8 @@ const router = createBrowserRouter([
       { path: '/Header', element: <Header /> },
       { path: '/ProductList', element: <ProductList /> },
       { path: '/Cart', element: <Cart /> },
-      { path: '/ProductDetails/:id', element: <ProductDetails /> }
+      { path: '/ProductDetails/:id', element: <ProductDetails /> },
+      { path: '/PlaceOrder/:id', element: <PlaceOrder /> }
     ]
   }
 ])

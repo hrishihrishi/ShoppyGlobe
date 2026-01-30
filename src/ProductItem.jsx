@@ -19,6 +19,7 @@ export function ProductItem({ product, inCart = false }) {
                     : <button onClick={() => dispatch(addToCart(product))} className="btn bg-blue-500">Add to Cart</button>
             }
             <Link to={`/ProductDetails/${product.id}`}><button className="btn bg-blue-500">View details</button></Link>
+            <Link to={`/PlaceOrder/${product.id}`}><button className="btn bg-blue-500">Buy Now</button></Link>
         </div>
     )
 }

@@ -1,5 +1,5 @@
 @import "tailwindcss";
 
 .btn {
-    @apply text-white rounded-lg p-2;
+    @apply text-white rounded-lg p-2 cursor-pointer shadow-lg shadow-gray-300 hover:shadow-2xs;
 }
