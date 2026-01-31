@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export function Header() {
     return (
@@ -9,11 +9,12 @@ export function Header() {
                 <h1 className="text-2xl font-bold text-white">ShoppyGlobe</h1>
             </div>
             <div className=" flex items-center justify-center">
-                <ul className="flex flex-row text-white text-xl space-x-4 font-bold">
-                    <li><Link to='/'>Home</Link></li>
-                    <li><Link to='/ProductList'>ProductsList</Link></li>
-                    <li><Link to='/Cart'>Cart</Link></li>
-                    <li><Link to='/YourOrders'>Your Orders</Link></li>
+                <ul className="flex flex-row text-white text-xl gap-5 font-bold">
+                    <li><NavLink to='/' className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')}
+      >Home</NavLink></li>
+                    <li><NavLink to='/ProductList' className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')}>ProductsList</NavLink></li>
+                    <li><NavLink to='/Cart' className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')}>Cart</NavLink></li>
+                    <li><NavLink to='/YourOrders' className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')}>Your Orders</NavLink></li>
                 </ul>
             </div>
         </nav>

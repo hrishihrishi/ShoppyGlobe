@@ -7,3 +7,11 @@
 .input {
     @apply bg-white w-md px-3 py-1 mx-2 rounded-md;
 }
+
+.active-link {
+    @apply text-yellow-300 text-2xl;
+}
+
+.inactive-link {
+    @apply text-white;
+}
