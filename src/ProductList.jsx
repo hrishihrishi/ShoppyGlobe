@@ -24,14 +24,10 @@ export function ProductList() {
 
     const handleSearchChange = (event) => {
         setSearchQuery(event.target.value)
-
-
         const filteredProducts = products.filter(product =>
             product.title.toLowerCase().includes(searchQuery.toLowerCase())
         )
-
         setProducts(filteredProducts)
-
     }
 
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addToCart } from "./redux/cartSlice";
+import { addToCart, removeFromCart } from "./redux/cartSlice";
 import { addToOrderedItemsSlice } from "./redux/OrderedItemsSlice";
 import { toast } from "react-toastify";
 import Modal from "react-modal";
@@ -71,9 +71,9 @@ export default function PlaceOrder() {
 
         // Dispatch to Redux
         dispatch(addToOrderedItemsSlice(finalOrder));
-
-
-
+        dispatch(removeFromCart(product.id));
+        toast.success("Removed Item from Cart!")
+            
         openModal()
     };
 
