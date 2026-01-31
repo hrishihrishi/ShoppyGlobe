@@ -36,8 +36,8 @@ export function ProductDetails() {
 
 
             {/* add id to redux slice */}
-            <button onClick={() => dispatch(addToCart(product))} className="btn bg-blue-500">Add to Cart</button>
-            <button onClick={() => navigate(-1)} className="btn mt-5 bg-gray-500">Go Back</button>
+            <button onClick={() => dispatch(addToCart(product))} className="btn bg-blue-500 w-sm">Add to Cart</button>
+            <button onClick={() => navigate(-1)} className="btn mt-5 bg-gray-500 w-sm">Go Back</button>
         </div>
     )
 }

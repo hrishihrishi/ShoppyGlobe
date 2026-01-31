@@ -14,6 +14,7 @@ import store, { persistor } from './redux/store.js'
 import PlaceOrder from './PlaceOrder.jsx'
 import { YourOrders } from './YourOrders.jsx'
 import { ToastContainer } from 'react-toastify'
+import { Home } from './Home.jsx'
 
 
 const router = createBrowserRouter([
@@ -28,7 +29,7 @@ const router = createBrowserRouter([
       { path: '/ProductDetails/:id', element: <ProductDetails /> },
       { path: '/PlaceOrder/:id', element: <PlaceOrder /> },
       { path: '/YourOrders', element: <YourOrders /> },
-      { path: '/Home', element: <Home /> }
+        {  index: true, element: <Home />}
     ]
   }
 ])

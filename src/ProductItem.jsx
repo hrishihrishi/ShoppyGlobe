@@ -8,7 +8,7 @@ export function ProductItem({ id, inCart = false, buyBtn = true }) {
     const [product, setProduct] = useState({})
 
     useEffect(() => {
-        const product =fetch(`https://fakestoreapi.com/products/${id}`)
+        const product = fetch(`https://fakestoreapi.com/products/${id}`)
             .then(response => response.json())
             .then(data => {
                 // Store the fetched data in the component’s state. 
@@ -23,16 +23,18 @@ export function ProductItem({ id, inCart = false, buyBtn = true }) {
             <img src={product.image} alt={product.title} className="h-[10vh] px-8" />
             <div>
                 <h1 className="text-xl font-semibold">{product.title}</h1>
-                {/* <p>Ratings: {product.rating.rate}</p> */}
+                {/* <p>Ratings: {product.rating.rate} ⭐ </p> */}
 
             </div>
-            {
-                inCart ?
-                    <button onClick={() => dispatch(removeFromCart(product.id))} className="btn bg-red-500">Remove from Cart</button>
-                    : <button onClick={() => dispatch(addToCart(product))} className="btn bg-blue-500">Add to Cart</button>
-            }
-            {buyBtn && <Link to={`/PlaceOrder/${product.id}`}><button className="btn bg-green-500">Buy Now</button></Link>}
-            <Link to={`/ProductDetails/${product.id}`} className=" text-lg text-blue-500 font-semibold underline">Product details ></Link>
+            <div className="flex  gap-2 items-end ml-auto">
+                {
+                    inCart ?
+                        <button onClick={() => dispatch(removeFromCart(product.id))} className="btn bg-red-500">Remove from Cart</button>
+                        : <button onClick={() => dispatch(addToCart(product))} className="btn bg-blue-500">Add to Cart</button>
+                }
+                {buyBtn && <Link to={`/PlaceOrder/${product.id}`}><button className="btn bg-green-500">Buy Now</button></Link>}
+                <Link to={`/ProductDetails/${product.id}`} className=" text-lg text-blue-500 font-semibold underline">Product details ></Link>
+            </div>
         </div>
     )
 }

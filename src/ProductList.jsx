@@ -23,7 +23,7 @@ export function ProductList() {
 
     return (
         <div>
-            <h1 className="text-4xl font-extrabold text-green-600 italic p-4">ProductList:</h1>
+            <h1 className="text-4xl font-extrabold text-green-600 italic p-4">Buy Products:</h1>
             {
                 loading ? (
                     <p>Loading...</p>
