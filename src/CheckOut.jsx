@@ -1,12 +1,14 @@
 import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 import { useState } from "react"
+import { addCartItemsToOrderedItemsSlice } from "./redux/OrderedItemsSlice"
 
 export function CheckOut() {
 
     const dispatch = useDispatch()
     const [formData, setFormData] = useState({})
     const allCartItems = useSelector((state) => state.cart.cart)
+    const [modalIsOpen, setIsModalOpen] = useState(false)
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -26,7 +28,8 @@ export function CheckOut() {
             ...item, ...formData
         }))
 
-        console.log(updatedAllCartItems)
+        dispatch(addCartItemsToOrderedItemsSlice(updatedAllCartItems))
+        toast.success("Order placed successfully")
     }
 
 
@@ -53,11 +56,6 @@ export function CheckOut() {
                                     </select>
                                 </label>
             
-                                {/* <label className="flex flex-col font-semibold">
-                                    Quantity
-                                    <input name="quantity" type="number" placeholder="Minimum quantity is 1" className="input mt-1 border p-2" onChange={(e)=>handleChange(e)} required />
-                                </label> */}
-            
                                 <label className="flex flex-col font-semibold">
                                     Your Full Name
                                     <input name="userName" type="text" placeholder="Enter your name" className="input mt-1 border p-2" onChange={(e)=>handleChange(e)} required />
@@ -73,21 +71,19 @@ export function CheckOut() {
                                 </button>
                             </form>
             
-                            {/* <Modal
+                            <Modal
                                 isOpen={modalIsOpen}
-                                onRequestClose={closeModal}
+                                onRequestClose={()=>setIsModalOpen(false)}
                                 contentLabel="Example Modal"
                                 className={'w-[50%] h-[50%] bg-white rounded-2xl shadow-2xl shadow-gray-500 fixed top-1/4 left-1/4 p-5'}
                             >
                                 <div className="flex flex-col gap-4">
                                     <h2 className="text-2xl font-bold text-green-800 mb-4">Order Placed Successfully!</h2>
-                                    <p>Order ID: {formData.id}</p>
-                                    <p>Thank you for your order. Your order will be delivered to you on {formData.deliveryDate}.</p>
+                                    <p>Thank you for your order. Your ordered items will be delivered to you on {formData.deliveryDate}.</p>
                                     <p>Our delivery agent will contact you soon.</p>
-                                    <p>Payment method: {formData.paymentMethod}</p>
-                                    <button onClick={closeModal} className="btn bg-blue-500 w-20">Close</button>
+                                    <button onClick={()=>setIsModalOpen(false)} className="btn bg-blue-500 w-20">Close</button>
                                 </div>
-                            </Modal> */}
+                            </Modal>
                         </div>
 
 

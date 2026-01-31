@@ -63,33 +63,9 @@ export default function PlaceOrder() {
         dispatch(addToOrderedItemsSlice(finalOrder));
         dispatch(removeFromCart(product.id));
         toast.success("Removed Item from Cart!")    
-        openModal()
-    };
-
-    const notify = () => {
-        toast("Order Placed Successfully!", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: false,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-        });
-    };
-
-    const openModal = () => {
         setModalIsOpen(true);
-        notify()
-    }
-
-    const closeModal = () => {
-        setModalIsOpen(false);
-        navigate("/");
-    }
-
-
+        toast("Order Placed Successfully!")
+    };
 
     if (!product) {
         return <div className="p-10 text-center text-2xl">Loading Product Details...</div>;
@@ -156,7 +132,7 @@ export default function PlaceOrder() {
 
                 <Modal
                     isOpen={modalIsOpen}
-                    onRequestClose={closeModal}
+                    onRequestClose={()=>setModalIsOpen(false)}
                     contentLabel="Example Modal"
                     className={'w-[50%] h-[50%] bg-white rounded-2xl shadow-2xl shadow-gray-500 fixed top-1/4 left-1/4 p-5'}
                 >
@@ -166,7 +142,7 @@ export default function PlaceOrder() {
                         <p>Thank you for your order. Your order will be delivered to you on {formData.deliveryDate}.</p>
                         <p>Our delivery agent will contact you soon.</p>
                         <p>Payment method: {formData.paymentMethod}</p>
-                        <button onClick={closeModal} className="btn bg-blue-500 w-20">Close</button>
+                        <button onClick={()=>setModalIsOpen(false)} className="btn bg-blue-500 w-20">Close</button>
                     </div>
                 </Modal>
             </div>

@@ -12,8 +12,11 @@ export const OrderedItemsSlice = createSlice({
         },
         removeFromOrderedItemsSlice: (state, action) => {
             state.OrderedItemsSliceArray = state.OrderedItemsSliceArray.filter(item => item.id !== action.payload)
+        },
+        addCartItemsToOrderedItemsSlice: (state, action) => {
+            state.OrderedItemsSliceArray = state.OrderedItemsSliceArray.concat(action.payload)
         }
     }
 })
 
-export const { addToOrderedItemsSlice, removeFromOrderedItemsSlice } = OrderedItemsSlice.actions
+export const { addToOrderedItemsSlice, removeFromOrderedItemsSlice, addCartItemsToOrderedItemsSlice } = OrderedItemsSlice.actions
