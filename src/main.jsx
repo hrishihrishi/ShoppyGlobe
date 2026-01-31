@@ -15,13 +15,14 @@ import PlaceOrder from './PlaceOrder.jsx'
 import { YourOrders } from './YourOrders.jsx'
 import { ToastContainer } from 'react-toastify'
 import { Home } from './Home.jsx'
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    // errorElement: <NotFound />,
+    errorElement: <NotFound />,
     children: [
       { path: '/Header', element: <Header /> },
       { path: '/ProductList', element: <ProductList /> },
@@ -39,7 +40,7 @@ createRoot(document.getElementById('root')).render(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <RouterProvider router={router} />
-        <ToastContainer />
+        <ToastContainer style={{zIndex: 10000}} />
       </PersistGate>
     </Provider>
   </StrictMode>,
