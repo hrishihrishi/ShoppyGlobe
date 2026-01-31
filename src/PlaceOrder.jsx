@@ -35,10 +35,25 @@ export default function PlaceOrder() {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData((prev) => ({
-            ...prev,
-            [name]: value
-        }));
+
+        const parsedValue = parseInt(value, 10);
+        if (name === 'quantity') {
+            const parsedValue = Math.max(1, parsedValue || 1)
+            setFormData((prev) => ({
+                ...prev,
+                [name]: parsedValue,
+            }))
+            return
+        } else {
+
+
+            setFormData((prev) => ({
+                ...prev,
+                [name]: value,
+                // quantity: Math.max(1, parseInt(value) || 1),
+
+            }));
+        }
     };
 
 
@@ -57,8 +72,8 @@ export default function PlaceOrder() {
         // Dispatch to Redux
         dispatch(addToOrderedItemsSlice(finalOrder));
 
-        
-        
+
+
         openModal()
     };
 
@@ -131,7 +146,7 @@ export default function PlaceOrder() {
 
                     <label className="flex flex-col font-semibold">
                         Quantity
-                        <input name="quantity" type="number" min="1" placeholder="1" className="input mt-1 border p-2" onChange={handleChange} required />
+                        <input name="quantity" type="number" placeholder="Minimum quantity is 1" className="input mt-1 border p-2" onChange={handleChange} required />
                     </label>
 
                     <label className="flex flex-col font-semibold">
@@ -151,10 +166,10 @@ export default function PlaceOrder() {
                 <button onClick={openModal} className="btn bg-blue-600 text-xl" >Notify</button>
 
                 <Modal
-                isOpen={modalIsOpen}
-                onRequestClose={closeModal}
-                contentLabel="Example Modal"
-                className={'w-[50%] h-[50%] bg-white rounded-2xl shadow-2xl shadow-gray-500 fixed top-1/4 left-1/4 p-5'}
+                    isOpen={modalIsOpen}
+                    onRequestClose={closeModal}
+                    contentLabel="Example Modal"
+                    className={'w-[50%] h-[50%] bg-white rounded-2xl shadow-2xl shadow-gray-500 fixed top-1/4 left-1/4 p-5'}
                 >
                     <div className="flex flex-col gap-4">
                         <h2 className="text-2xl font-bold text-green-800 mb-4">Order Placed Successfully!</h2>
