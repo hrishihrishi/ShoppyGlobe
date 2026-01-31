@@ -11,6 +11,7 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from './components/loader.jsx'
 
+// lazy loading
 const Home = lazy(() => import('./Home.jsx'))
 const ProductList = lazy(() => import('./ProductList.jsx'))
 const Cart = lazy(() => import('./Cart.jsx'))
@@ -20,7 +21,7 @@ const YourOrders = lazy(() => import('./YourOrders.jsx'))
 const CheckOut = lazy(() => import('./CheckOut.jsx'))
 const NotFound = lazy(() => import('./NotFound.jsx'))
 
-
+// browserRouter for routing, with lazy loading and fallback loader
 const router = createBrowserRouter([
   {
     path: '/',
@@ -39,6 +40,7 @@ const router = createBrowserRouter([
   }
 ])
 
+// render app with router, provider, persistGate and toastContainer wrapped!
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>

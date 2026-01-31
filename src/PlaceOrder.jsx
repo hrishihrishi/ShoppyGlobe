@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import Modal from "react-modal";
 
 export default function PlaceOrder() {
-    const [product, setProduct] = useState(null); // Changed to singular 'product'
+    const [product, setProduct] = useState(null); 
     const params = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -35,6 +35,7 @@ export default function PlaceOrder() {
     const handleChange = (e) => {
         const { name, value } = e.target;
 
+        // This block makes sure quantity is minimum 1
         const parsedValue = parseInt(value, 10);
         if (name === 'quantity') {
             const parsedValue = Math.max(1, parsedValue || 1)
@@ -44,25 +45,33 @@ export default function PlaceOrder() {
             }))
             return
         } else {
+
+            // This block updates the form data as input changes
             setFormData((prev) => ({
                 ...prev,
                 [name]: value,
-                // quantity: Math.max(1, parseInt(value) || 1),
             }));
         }
     };
 
+    // called when form is submitted
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        // create final order object to pass to addToOrderedItemsSlice (redux)
         const finalOrder = {
             ...formData,
             productTitle: product.title,
             totalPrice: product.price * (parseInt(formData.quantity) || 1),
             status: "Ordered",
         };
+
+        // addToOrderedItemsSlice to add order to orderedItemsSlice (redux)
         dispatch(addToOrderedItemsSlice(finalOrder));
+
+        // remove item from cart after ordering successfully
         dispatch(removeFromCart(product.id));
-        toast.success("Removed Item from Cart!")    
+        toast.success("Removed Item from Cart!")
         setModalIsOpen(true);
         toast("Order Placed Successfully!")
     };
@@ -75,6 +84,7 @@ export default function PlaceOrder() {
         <div className="flex flex-col p-5 bg-blue-50 rounded-xl m-5 gap-1">
             <h1 className="text-2xl font-bold mb-4">Product Details:</h1>
 
+            {/* product image and details before purchasing */}
             <div className="lg:flex bg-white p-4 rounded-xl shadow-sm mb-6">
                 <img src={product.image} alt={product.title} className="w-32 h-32 object-contain m-4 rounded-xl" />
                 <div className="lg:p-5 lg:text-xl">
@@ -85,6 +95,7 @@ export default function PlaceOrder() {
                 </div>
             </div>
 
+            {/* buttons to add to cart or go back */}
             <div className="flex gap-4 mb-8">
                 <button onClick={() => dispatch(addToCart(product))} className="btn bg-blue-500 px-6">Add to Cart</button>
                 <button onClick={() => navigate(-1)} className="btn bg-gray-500 px-6">Go Back</button>
@@ -92,7 +103,7 @@ export default function PlaceOrder() {
 
             <div className="flex flex-col gap-2 p-8 bg-green-100 rounded-2xl shadow-md">
                 <h1 className="text-2xl font-bold text-green-800 mb-4">Enter Delivery Details: *</h1>
-
+                {/* form to enter delivery details */}
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                     <label className="flex flex-col font-semibold">
                         Delivery Address
@@ -130,9 +141,10 @@ export default function PlaceOrder() {
                 </form>
                 <button onClick={openModal} className="btn bg-blue-600 text-xl" >Notify</button>
 
+                {/* Modal opens only after placing order with valid details */}
                 <Modal
                     isOpen={modalIsOpen}
-                    onRequestClose={()=>setModalIsOpen(false)}
+                    onRequestClose={() => setModalIsOpen(false)}
                     contentLabel="Example Modal"
                     className={'w-[50%] h-[50%] bg-white rounded-2xl shadow-2xl shadow-gray-500 fixed top-1/4 left-1/4 p-5'}
                 >
@@ -142,7 +154,7 @@ export default function PlaceOrder() {
                         <p>Thank you for your order. Your order will be delivered to you on {formData.deliveryDate}.</p>
                         <p>Our delivery agent will contact you soon.</p>
                         <p>Payment method: {formData.paymentMethod}</p>
-                        <button onClick={()=>setModalIsOpen(false)} className="btn bg-blue-500 w-20">Close</button>
+                        <button onClick={() => setModalIsOpen(false)} className="btn bg-blue-500 w-20">Close</button>
                     </div>
                 </Modal>
             </div>

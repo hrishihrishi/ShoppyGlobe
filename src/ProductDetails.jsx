@@ -4,11 +4,14 @@ import { useNavigate, useParams } from "react-router-dom";
 
 export default function ProductDetails() {
     const [productDetails, setProductDetails] = useState();
+
+    // gets product id from URL
     const params = useParams();
     const dispatch = useDispatch();
     const navigate = useNavigate();
     console.log(params);
 
+    // fetch product details from API
     useEffect(() => {
         fetch(`https://fakestoreapi.com/products/${params.id}`)
             .then(response => response.json())
@@ -21,6 +24,7 @@ export default function ProductDetails() {
     }, [])
 
     return (
+        // product details container
         <div className="flex flex-col p-5 bg-blue-50 rounded-xl m-5 gap-1">
             <h1 className="text-2xl font-bold">Product Details:</h1>
             <div className="lg:flex">
@@ -37,6 +41,7 @@ export default function ProductDetails() {
 
             {/* add id to redux slice */}
             <button onClick={() => dispatch(addToCart(product))} className="btn bg-blue-500 w-sm">Add to Cart</button>
+            {/* go back button navigates to previous page */}
             <button onClick={() => navigate(-1)} className="btn mt-5 bg-gray-500 w-sm">Go Back</button>
         </div>
     )

@@ -6,9 +6,12 @@ import { Link } from "react-router-dom";
 
 export default function YourOrders() {
     const dispatch = useDispatch()
+
+    // get ordered items from redux store (with quantity and delivery details)
     const data = useSelector((state) => state.OrderedItemsSlice.OrderedItemsSliceArray);
     console.log(data)
 
+    // if no orders, displays this div
     if (!data.length) {
         return (
             <div className="fixed top-1/4 left-1/4 w-[50%] h-[50%] rounded-2xl flex flex-col items-center justify-center bg-gray-300">
@@ -24,8 +27,13 @@ export default function YourOrders() {
             {
                 data.map((item) => {
                     return (
+                        // display order details specific to each product
                         <div className="text-xl gap-2 p-2 m-5 flex flex-col rounded-2xl shadow-md bg-green-100">
+
+                            {/* product details */}
                             <ProductItem key={item.id} id={item.id} inCart={false} buyBtn={false} />
+
+                            {/* delivery details */}
                             <p className="p-pO" ><strong>Price :</strong> {item.totalPrice}</p>
                             <p className="p-pO"><strong>Delivery Date :</strong> {item.deliveryDate}</p>
                             <p className="p-pO"><strong>Delivery Address :</strong> {item.deliveryAddress}</p>

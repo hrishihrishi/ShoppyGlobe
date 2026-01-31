@@ -4,10 +4,12 @@ import { addToCart, removeFromCart } from "./redux/cartSlice"
 import { useEffect, useState } from "react"
 import { toast } from "react-toastify"
 
+// ProductItem component and props to decide whether to show incart, buy button or not
 export default function ProductItem({ id, inCart = false, buyBtn = true }) {
     const dispatch = useDispatch()
     const [product, setProduct] = useState({})
 
+    // fetch product details from API, product id from props
     useEffect(() => {
         const product = fetch(`https://fakestoreapi.com/products/${id}`)
             .then(response => response.json())
@@ -19,6 +21,7 @@ export default function ProductItem({ id, inCart = false, buyBtn = true }) {
             });
     }, [])
 
+    // dispatch addToCart action to add product to cart
     const handleAddToCart = () => {
         dispatch(addToCart({
             ...product,
@@ -27,6 +30,7 @@ export default function ProductItem({ id, inCart = false, buyBtn = true }) {
         toast.success("Product added to cart")
     }
 
+    // dispatch removeFromCart action to remove product from cart
     const handleRemoveFromCart = () => {
         dispatch(removeFromCart(product.id))
         toast.success("Product removed from cart")
@@ -46,7 +50,11 @@ export default function ProductItem({ id, inCart = false, buyBtn = true }) {
                         <button onClick={handleRemoveFromCart} className="btn bg-red-500">Remove from Cart</button>
                         : <button onClick={handleAddToCart} className="btn bg-blue-500">Add to Cart</button>
                 }
+                
+                {/* buy button + navigate to place order page */}
                 {buyBtn && <Link to={`/PlaceOrder/${product.id}`}><button className="btn bg-green-500">Buy Now</button></Link>}
+
+                {/* link to product details page */}
                 <Link to={`/ProductDetails/${product.id}`} className=" text-lg text-blue-500 font-semibold underline">Product details ></Link>
             </div>
         </div>
