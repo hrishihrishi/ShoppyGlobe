@@ -11,7 +11,6 @@ export default function PlaceOrder() {
     const params = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     const [formData, setFormData] = useState({
@@ -45,35 +44,25 @@ export default function PlaceOrder() {
             }))
             return
         } else {
-
-
             setFormData((prev) => ({
                 ...prev,
                 [name]: value,
                 // quantity: Math.max(1, parseInt(value) || 1),
-
             }));
         }
     };
 
-
-
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        // Create the full order object
         const finalOrder = {
             ...formData,
             productTitle: product.title,
             totalPrice: product.price * (parseInt(formData.quantity) || 1),
             status: "Ordered",
         };
-
-        // Dispatch to Redux
         dispatch(addToOrderedItemsSlice(finalOrder));
         dispatch(removeFromCart(product.id));
-        toast.success("Removed Item from Cart!")
-            
+        toast.success("Removed Item from Cart!")    
         openModal()
     };
 

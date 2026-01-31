@@ -20,7 +20,10 @@ export function ProductItem({ id, inCart = false, buyBtn = true }) {
     }, [])
 
     const handleAddToCart = () => {
-        dispatch(addToCart(product))
+        dispatch(addToCart({
+            ...product,
+            quantity: 1
+        }))
         toast.success("Product added to cart")
     }
 

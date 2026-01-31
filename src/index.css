@@ -19,3 +19,8 @@
 .p-pO {
     @apply pl-2 italic;
 }
+
+.quantity-btn {
+    @apply w-10 bg-blue-400 text-xl font-bold text-white rounded-xl cursor-pointer p-0.5;
+}
+    

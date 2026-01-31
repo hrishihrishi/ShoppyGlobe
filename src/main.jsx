@@ -16,13 +16,14 @@ import { YourOrders } from './YourOrders.jsx'
 import { ToastContainer } from 'react-toastify'
 import { Home } from './Home.jsx'
 import 'react-toastify/dist/ReactToastify.css';
+import { CheckOut } from './CheckOut.jsx'
 
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    errorElement: <NotFound />,
+    // errorElement: <NotFound />,
     children: [
       { path: '/Header', element: <Header /> },
       { path: '/ProductList', element: <ProductList /> },
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
       { path: '/ProductDetails/:id', element: <ProductDetails /> },
       { path: '/PlaceOrder/:id', element: <PlaceOrder /> },
       { path: '/YourOrders', element: <YourOrders /> },
+      { path: '/CheckOut', element: <CheckOut /> },
         {  index: true, element: <Home />}
     ]
   }
