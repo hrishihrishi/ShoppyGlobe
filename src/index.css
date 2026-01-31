@@ -15,3 +15,7 @@
 .inactive-link {
     @apply text-white;
 }
+
+.p-pO {
+    @apply pl-2 italic;
+}

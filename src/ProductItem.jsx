@@ -19,7 +19,7 @@ export function ProductItem({ id, inCart = false, buyBtn = true }) {
     }, [])
 
     return (
-        <div className="m-5 p-4  rounded-3xl shadow-[0px_0px_5px_5px_rgba(0,0,0,0.1)] shadow-gray-200 gap-3 flex items-center">
+        <div className="m-5 p-4 bg-white rounded-3xl shadow-[0px_0px_5px_5px_rgba(0,0,0,0.1)] shadow-gray-200 gap-3 flex items-center">
             <img src={product.image} alt={product.title} className="h-[10vh] px-8" />
             <div>
                 <h1 className="text-xl font-semibold">{product.title}</h1>

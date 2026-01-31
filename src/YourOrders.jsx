@@ -18,7 +18,7 @@ export function YourOrders() {
     }
     return (
         <div>
-            <h1 className="text-4xl font-bold text-blue-500">Your Orders</h1>
+            <h1 className="text-4xl font-bold text-blue-500 px-8 pt-5">Your Orders:</h1>
             {
                 data.map((item) => {
                     // const product = fetch(`https://fakestoreapi.com/products/${item.id}`)
@@ -30,13 +30,14 @@ export function YourOrders() {
                     //     });
 
                     return (
-                        <div>
+                        <div className="text-xl gap-2 p-2 m-5 flex flex-col rounded-2xl shadow-md bg-green-100">
                             <ProductItem key={item.id} id={item.id} inCart={false} buyBtn={false}/>
-                            <p>Price: {item.price}</p>
-                            <p>Delivery Date: {item.deliveryDate}</p>
-                            <p>Quantity: {item.quantity}</p>
-                            <p>Status: {item.status}</p>
-                            <button className="btn bg-red-500" onClick={() => {dispatch(removeFromOrderedItemsSlice(item.id))}}>Cancel Order</button>
+                            <p className="p-pO" ><strong>Price :</strong> {item.totalPrice}</p>
+                            <p className="p-pO"><strong>Delivery Date :</strong> {item.deliveryDate}</p>
+                            <p className="p-pO"><strong>Delivery Address :</strong> {item.deliveryAddress}</p>
+                            <p className="p-pO"><strong>Quantity :</strong> {item.quantity}</p>
+                            <p className="p-pO"><strong>Status :</strong> {item.status}</p>
+                            <button className="btn bg-red-500 w-50 ml-auto mr-5 mb-5" onClick={() => {dispatch(removeFromOrderedItemsSlice(item.id))}}>Cancel Order</button>
                         </div>
                     )
                 })
