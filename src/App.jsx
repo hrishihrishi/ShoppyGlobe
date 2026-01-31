@@ -1,8 +1,8 @@
 import { Outlet } from 'react-router-dom';
-import { Header } from './Header';
-import { ProductList } from './ProductList';
+import Header from './Header';
+import ProductList from './ProductList';
 
-export function App() {
+export default function App() {
 
   return (
     <div>

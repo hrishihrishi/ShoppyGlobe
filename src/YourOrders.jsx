@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
-import { ProductItem } from "./ProductItem";
+import ProductItem from "./ProductItem";
 import { removeFromOrderedItemsSlice } from "./redux/OrderedItemsSlice";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-export function YourOrders() {
+export default function YourOrders() {
     const dispatch = useDispatch()
     const data = useSelector((state) => state.OrderedItemsSlice.OrderedItemsSliceArray);
     console.log(data)

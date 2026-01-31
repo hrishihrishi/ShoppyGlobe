@@ -4,7 +4,7 @@ import { addToCart, removeFromCart } from "./redux/cartSlice"
 import { useEffect, useState } from "react"
 import { toast } from "react-toastify"
 
-export function ProductItem({ id, inCart = false, buyBtn = true }) {
+export default function ProductItem({ id, inCart = false, buyBtn = true }) {
     const dispatch = useDispatch()
     const [product, setProduct] = useState({})
 

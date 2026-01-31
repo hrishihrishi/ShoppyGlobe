@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux"
-import { ProductItem } from "./ProductItem"
+import ProductItem from "./ProductItem"
 import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
 import { updateQuantity } from "./redux/cartSlice"
 
-export const Cart = () => {
+export default function Cart() {
     const cartItems = useSelector((state) => state.cart.cart)
     console.log(cartItems)
     const navigate = useNavigate()

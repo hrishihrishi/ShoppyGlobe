@@ -5,7 +5,7 @@ import { addCartItemsToOrderedItemsSlice } from "./redux/OrderedItemsSlice"
 import { toast } from "react-toastify"
 import Modal from "react-modal"
 
-export function CheckOut() {
+export default function CheckOut() {
 
     const dispatch = useDispatch()
     const [formData, setFormData] = useState({})

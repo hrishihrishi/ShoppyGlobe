@@ -1,38 +1,39 @@
-import { StrictMode } from 'react'
+import { StrictMode, lazy, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import { App } from './App.jsx'
+import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { ProductList } from './ProductList';
-import { Cart } from './Cart';
-import { Header } from './Header';
-import { NotFound } from './NotFound';
-import { ProductDetails } from './ProductDetails.jsx'
+import Header from './Header';
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import store, { persistor } from './redux/store.js'
-import PlaceOrder from './PlaceOrder.jsx'
-import { YourOrders } from './YourOrders.jsx'
 import { ToastContainer } from 'react-toastify'
-import { Home } from './Home.jsx'
 import 'react-toastify/dist/ReactToastify.css';
-import { CheckOut } from './CheckOut.jsx'
+
+const Home = lazy(() => import('./Home.jsx'))
+const ProductList = lazy(() => import('./ProductList.jsx'))
+const Cart = lazy(() => import('./Cart.jsx'))
+const ProductDetails = lazy(() => import('./ProductDetails.jsx'))
+const PlaceOrder = lazy(() => import('./PlaceOrder.jsx'))
+const YourOrders = lazy(() => import('./YourOrders.jsx'))
+const CheckOut = lazy(() => import('./CheckOut.jsx'))
+const NotFound = lazy(() => import('./NotFound.jsx'))
 
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    // errorElement: <NotFound />,
+    errorElement: <Suspense fallback={<div>Loading...</div>}><NotFound /></Suspense>,
     children: [
       { path: '/Header', element: <Header /> },
-      { path: '/ProductList', element: <ProductList /> },
-      { path: '/Cart', element: <Cart /> },
-      { path: '/ProductDetails/:id', element: <ProductDetails /> },
-      { path: '/PlaceOrder/:id', element: <PlaceOrder /> },
-      { path: '/YourOrders', element: <YourOrders /> },
-      { path: '/CheckOut', element: <CheckOut /> },
-        {  index: true, element: <Home />}
+      { path: '/ProductList', element: <Suspense fallback={<div>Loading...</div>}><ProductList /></Suspense> },
+      { path: '/Cart', element: <Suspense fallback={<div>Loading...</div>}><Cart /></Suspense> },
+      { path: '/ProductDetails/:id', element: <Suspense fallback={<div>Loading...</div>}><ProductDetails /></Suspense> },
+      { path: '/PlaceOrder/:id', element: <Suspense fallback={<div>Loading...</div>}><PlaceOrder /></Suspense> },
+      { path: '/YourOrders', element: <Suspense fallback={<div>Loading...</div>}><YourOrders /></Suspense> },
+      { path: '/CheckOut', element: <Suspense fallback={<div>Loading...</div>}><CheckOut /></Suspense> },
+        {  index: true, element: <Suspense fallback={<div>Loading...</div>}><Home /></Suspense>}
     ]
   }
 ])

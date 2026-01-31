@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
-export function ProductDetails() {
+export default function ProductDetails() {
     const [productDetails, setProductDetails] = useState();
     const params = useParams();
     const dispatch = useDispatch();

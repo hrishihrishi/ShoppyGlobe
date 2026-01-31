@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"; // Better than window.location
 import { toast } from "react-toastify";
 import { useRouteError } from "react-router-dom";
 
-export function NotFound() {
+export default function NotFound() {
     const navigate = useNavigate();
     const err = useRouteError();
     console.log(err);
