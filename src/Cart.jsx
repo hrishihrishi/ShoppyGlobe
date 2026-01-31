@@ -16,9 +16,9 @@ export const Cart = () => {
                         <ProductItem key={item.id} id={item.id} inCart={true}/>
                     </div>
                 )
-            })) : <div className="fixed top-1/4 left-1/4 w-[50%] h-[50%] rounded-2xl flex flex-col items-center justify-center bg-red-300">
+            })) : <div className="fixed rounded-2xl flex flex-col items-center justify-center bg-red-400 w-[50%] h-[50%] top-1/4 left-1/4">
                 <h1 className="text-4xl text-white font-bold mb-10">Oops! Your cart is empty!</h1>
-            <Link to="/ProductList" className="btn bg-green-400 font-bold">Add Products to cart</Link>
+            <Link to="/ProductList" className="text-white rounded-lg p-2 cursor-pointer bg-green-400 font-bold">Add Products to cart</Link>
             </div>
         }
         </div>

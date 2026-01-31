@@ -6,6 +6,7 @@ export function ProductList() {
 
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(true)
+    const [searchQuery, setSearchQuery] = useState('')
 
     useEffect(() => {
         fetch('https://fakestoreapi.com/products')
@@ -21,9 +22,25 @@ export function ProductList() {
             })
     }, [])
 
+    const handleSearchChange = (event) => {
+        setSearchQuery(event.target.value)
+
+
+        const filteredProducts = products.filter(product =>
+            product.title.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+
+        setProducts(filteredProducts)
+
+    }
+
+
+
     return (
         <div>
             <h1 className="text-4xl font-extrabold text-green-600 italic p-4">Buy Products:</h1>
+            <input onChange={handleSearchChange} type="text" placeholder="Search Products" className="bg-white w-md px-3 py-1 ml-[30%] rounded-md border-2 border-gray-400"/>
+            <button className="bg-green-500 text-white px-4 py-1 rounded-md ml-2">Search</button>
             {
                 loading ? (
                     <p>Loading...</p>
