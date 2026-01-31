@@ -9,6 +9,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 import store, { persistor } from './redux/store.js'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import Loader from './components/loader.jsx'
 
 const Home = lazy(() => import('./Home.jsx'))
 const ProductList = lazy(() => import('./ProductList.jsx'))
@@ -24,16 +25,16 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    errorElement: <Suspense fallback={<div>Loading...</div>}><NotFound /></Suspense>,
+    errorElement: <Suspense fallback={<Loader />}><NotFound /></Suspense>,
     children: [
       { path: '/Header', element: <Header /> },
-      { path: '/ProductList', element: <Suspense fallback={<div>Loading...</div>}><ProductList /></Suspense> },
-      { path: '/Cart', element: <Suspense fallback={<div>Loading...</div>}><Cart /></Suspense> },
-      { path: '/ProductDetails/:id', element: <Suspense fallback={<div>Loading...</div>}><ProductDetails /></Suspense> },
-      { path: '/PlaceOrder/:id', element: <Suspense fallback={<div>Loading...</div>}><PlaceOrder /></Suspense> },
-      { path: '/YourOrders', element: <Suspense fallback={<div>Loading...</div>}><YourOrders /></Suspense> },
-      { path: '/CheckOut', element: <Suspense fallback={<div>Loading...</div>}><CheckOut /></Suspense> },
-        {  index: true, element: <Suspense fallback={<div>Loading...</div>}><Home /></Suspense>}
+      { path: '/ProductList', element: <Suspense fallback={<Loader />}><ProductList /></Suspense> },
+      { path: '/Cart', element: <Suspense fallback={<Loader />}><Cart /></Suspense> },
+      { path: '/ProductDetails/:id', element: <Suspense fallback={<Loader />}><ProductDetails /></Suspense> },
+      { path: '/PlaceOrder/:id', element: <Suspense fallback={<Loader />}><PlaceOrder /></Suspense> },
+      { path: '/YourOrders', element: <Suspense fallback={<Loader />}><YourOrders /></Suspense> },
+      { path: '/CheckOut', element: <Suspense fallback={<Loader />}><CheckOut /></Suspense> },
+        {  index: true, element: <Suspense fallback={<Loader />}><Home /></Suspense>}
     ]
   }
 ])

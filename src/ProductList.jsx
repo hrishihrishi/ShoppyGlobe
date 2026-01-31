@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import ProductItem from "./ProductItem"
+import Loader from "./components/loader"
 
 
 export default function ProductList() {
@@ -39,7 +40,7 @@ export default function ProductList() {
             <button className="bg-green-500 text-white px-4 py-1 rounded-md ml-2">Search</button>
             {
                 loading ? (
-                    <p>Loading...</p>
+                    <Loader />
                 ) : (
                     products.map((product) => (
                         <ProductItem key={product.id} id={product.id} />
