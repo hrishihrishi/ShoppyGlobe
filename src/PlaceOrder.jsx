@@ -3,12 +3,16 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "./redux/cartSlice";
 import { addToOrderedItemsSlice } from "./redux/OrderedItemsSlice";
+import { toast } from "react-toastify";
+import Modal from "react-modal";
 
 export default function PlaceOrder() {
     const [product, setProduct] = useState(null); // Changed to singular 'product'
     const params = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    const [modalIsOpen, setModalIsOpen] = useState(false);
 
     const [formData, setFormData] = useState({
         id: params.id,
@@ -37,7 +41,7 @@ export default function PlaceOrder() {
         }));
     };
 
-    
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -53,9 +57,33 @@ export default function PlaceOrder() {
         // Dispatch to Redux
         dispatch(addToOrderedItemsSlice(finalOrder));
 
-        alert("Order Placed Successfully!");
-        navigate("/Cart");
+        
+        
+        openModal()
     };
+
+    const notify = () => {
+        toast("Order Placed Successfully!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    };
+
+    const openModal = () => {
+        setModalIsOpen(true);
+        notify()
+    }
+
+    const closeModal = () => {
+        setModalIsOpen(false);
+        navigate("/");
+    }
 
 
 
@@ -116,10 +144,27 @@ export default function PlaceOrder() {
                         <input name="deliveryDate" type="date" className="input mt-1 border p-2" onChange={handleChange} required />
                     </label>
 
-                    <button type="submit" className="btn bg-green-600 hover:bg-green-700 text-xl font-bold py-3 mt-4">
+                    <button type="submit" onClick={openModal} className="btn bg-green-600 hover:bg-green-700 text-xl font-bold py-3 mt-4">
                         Confirm & Place Order
                     </button>
                 </form>
+                <button onClick={openModal} className="btn bg-blue-600 text-xl" >Notify</button>
+
+                <Modal
+                isOpen={modalIsOpen}
+                onRequestClose={closeModal}
+                contentLabel="Example Modal"
+                className={'w-[50%] h-[50%] bg-white rounded-2xl shadow-2xl shadow-gray-500 fixed top-1/4 left-1/4 p-5'}
+                >
+                    <div className="flex flex-col gap-4">
+                        <h2 className="text-2xl font-bold text-green-800 mb-4">Order Placed Successfully!</h2>
+                        <p>Order ID: {formData.id}</p>
+                        <p>Thank you for your order. Your order will be delivered to you on {formData.deliveryDate}.</p>
+                        <p>Our delivery agent will contact you soon.</p>
+                        <p>Payment method: {formData.paymentMethod}</p>
+                        <button onClick={closeModal} className="btn bg-blue-500 w-20">Close</button>
+                    </div>
+                </Modal>
             </div>
         </div>
     );

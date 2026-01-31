@@ -13,6 +13,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 import store, { persistor } from './redux/store.js'
 import PlaceOrder from './PlaceOrder.jsx'
 import { YourOrders } from './YourOrders.jsx'
+import { ToastContainer } from 'react-toastify'
 
 
 const router = createBrowserRouter([
@@ -26,7 +27,8 @@ const router = createBrowserRouter([
       { path: '/Cart', element: <Cart /> },
       { path: '/ProductDetails/:id', element: <ProductDetails /> },
       { path: '/PlaceOrder/:id', element: <PlaceOrder /> },
-      { path: '/YourOrders', element: <YourOrders /> }
+      { path: '/YourOrders', element: <YourOrders /> },
+      { path: '/Home', element: <Home /> }
     ]
   }
 ])
@@ -36,6 +38,7 @@ createRoot(document.getElementById('root')).render(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <RouterProvider router={router} />
+        <ToastContainer />
       </PersistGate>
     </Provider>
   </StrictMode>,

@@ -19,10 +19,10 @@ export function ProductItem({ id, inCart = false, buyBtn = true }) {
     }, [])
 
     return (
-        <div className="m-2 shadow-cyan-400 gap-3 border-2 border-amber-500 flex items-center">
-            <img src={product.image} alt={product.title} className="h-[10vh]" />
+        <div className="m-5 p-4  rounded-3xl shadow-[0px_0px_5px_5px_rgba(0,0,0,0.1)] shadow-gray-200 gap-3 flex items-center">
+            <img src={product.image} alt={product.title} className="h-[10vh] px-8" />
             <div>
-                <h1>{product.title}</h1>
+                <h1 className="text-xl font-semibold">{product.title}</h1>
                 {/* <p>Ratings: {product.rating.rate}</p> */}
 
             </div>
@@ -31,8 +31,8 @@ export function ProductItem({ id, inCart = false, buyBtn = true }) {
                     <button onClick={() => dispatch(removeFromCart(product.id))} className="btn bg-red-500">Remove from Cart</button>
                     : <button onClick={() => dispatch(addToCart(product))} className="btn bg-blue-500">Add to Cart</button>
             }
-            <Link to={`/ProductDetails/${product.id}`}><button className="btn bg-blue-500">View details</button></Link>
             {buyBtn && <Link to={`/PlaceOrder/${product.id}`}><button className="btn bg-green-500">Buy Now</button></Link>}
+            <Link to={`/ProductDetails/${product.id}`} className=" text-lg text-blue-500 font-semibold underline">Product details ></Link>
         </div>
     )
 }
