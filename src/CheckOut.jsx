@@ -4,10 +4,13 @@ import { useState } from "react"
 import { addCartItemsToOrderedItemsSlice } from "./redux/OrderedItemsSlice"
 import { toast } from "react-toastify"
 import Modal from "react-modal"
+import { useNavigate } from "react-router-dom"
+import { removeFromCart } from "./redux/cartSlice"
+Modal.setAppElement('#root');
 
 export default function CheckOut() {
-
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({})
 
     // gets all items in cart which already has quantity in them
@@ -32,15 +35,17 @@ export default function CheckOut() {
             ...item, ...formData
         }))
         dispatch(addCartItemsToOrderedItemsSlice(updatedAllCartItems))
+        updatedAllCartItems.forEach((item) => {
+            dispatch(removeFromCart(item.id))
+        })
         setIsModalOpen(true)
         toast.success("Orders are placed successfully")
+        toast.info("Removed items from cart")
     }
 
 
     return (
         <div>
-            <h1>CheckOut</h1>
-
             <div className="flex flex-col gap-2 p-8 bg-green-100 rounded-2xl shadow-md">
                 <h1 className="text-2xl font-bold text-green-800 mb-4">Enter Delivery Details: *</h1>
 
@@ -88,6 +93,7 @@ export default function CheckOut() {
                         <p>Thank you for your order. Your ordered items will be delivered to you on {formData.deliveryDate}.</p>
                         <p>Our delivery agent will contact you soon.</p>
                         <button onClick={() => setIsModalOpen(false)} className="btn bg-blue-500 w-20">Close</button>
+                        <button onClick={() => navigate("/Cart")} className="btn bg-green-500 w-30">View Cart</button>
                     </div>
                 </Modal>
             </div>

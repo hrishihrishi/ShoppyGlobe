@@ -1,7 +1,12 @@
 export default function Loader() {
     return (
-        <div>
-            <img src="src/assets/loading.png" alt="loadin..." className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[20vw]"/>
+        // Full-screen overlay with blur and slight tint
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/20 backdrop-blur-md">
+            <img 
+                src="src/assets/loading.png" 
+                alt="loading..." 
+                className="w-[20vw] rounded-full"
+            />
         </div>
     )
 }

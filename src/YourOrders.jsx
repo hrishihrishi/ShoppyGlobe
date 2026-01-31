@@ -28,7 +28,7 @@ export default function YourOrders() {
                 data.map((item) => {
                     return (
                         // display order details specific to each product
-                        <div className="text-xl gap-2 p-2 m-5 flex flex-col rounded-2xl shadow-md bg-green-100">
+                        <div className="text-xl gap-2 p-2 m-5 flex flex-col rounded-2xl shadow-md bg-green-100" key={item.id}>
 
                             {/* product details */}
                             <ProductItem key={item.id} id={item.id} inCart={false} buyBtn={false} />

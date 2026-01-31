@@ -18,11 +18,13 @@ export default function Cart() {
             (
                 <>
                     {cartItems.map((item) => (
-                        <div key={item.id} className="flex">
+                        <div key={item.id} className="flex items-center">
                             {/* Product Item */}
-                            <ProductItem id={item.id} inCart={true} />
+                            <div className="flex-1">
+                                <ProductItem id={item.id} inCart={true}/>
+                            </div>
                             {/* Quantity adjuster*/}
-                            <div className="p-1 shadow-2xl shadow-gray-400 rounded-2xl my-5 bg-blue-100">
+                            <div className="p-1 shadow-2xl shadow-gray-400 rounded-2xl my-5 bg-blue-100 mr-20">
                                 <button onClick={() => dispatch(updateQuantity({ id: item.id, amount: 1 }))} className="quantity-btn mt-1">+</button>
                                 <div className="text-center text-xl font-bold m-1">{item.quantity}</div>
                                 <button onClick={() => dispatch(updateQuantity({ id: item.id, amount: -1 }))} className="quantity-btn">-</button>

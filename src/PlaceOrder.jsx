@@ -5,6 +5,7 @@ import { addToCart, removeFromCart } from "./redux/cartSlice";
 import { addToOrderedItemsSlice } from "./redux/OrderedItemsSlice";
 import { toast } from "react-toastify";
 import Modal from "react-modal";
+Modal.setAppElement('#root');
 
 export default function PlaceOrder() {
     const [product, setProduct] = useState(null); 
@@ -36,9 +37,9 @@ export default function PlaceOrder() {
         const { name, value } = e.target;
 
         // This block makes sure quantity is minimum 1
-        const parsedValue = parseInt(value, 10);
+        const parsedValuee = parseInt(value, 10);
         if (name === 'quantity') {
-            const parsedValue = Math.max(1, parsedValue || 1)
+            const parsedValue = Math.max(1, parsedValuee || 1)
             setFormData((prev) => ({
                 ...prev,
                 [name]: parsedValue,
@@ -74,6 +75,7 @@ export default function PlaceOrder() {
         toast.success("Removed Item from Cart!")
         setModalIsOpen(true);
         toast("Order Placed Successfully!")
+        // navigate("/Cart")
     };
 
     if (!product) {
@@ -104,7 +106,7 @@ export default function PlaceOrder() {
             <div className="flex flex-col gap-2 p-8 bg-green-100 rounded-2xl shadow-md">
                 <h1 className="text-2xl font-bold text-green-800 mb-4">Enter Delivery Details: *</h1>
                 {/* form to enter delivery details */}
-                <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                <form onSubmit={handleSubmit} className="flex flex-col gap-4" autoComplete="on">
                     <label className="flex flex-col font-semibold">
                         Delivery Address
                         <input name="deliveryAddress" type="text" placeholder="House No, Street, City" className="input mt-1 border p-2" onChange={handleChange} required />
@@ -135,11 +137,10 @@ export default function PlaceOrder() {
                         <input name="deliveryDate" type="date" className="input mt-1 border p-2" onChange={handleChange} required />
                     </label>
 
-                    <button type="submit" onClick={openModal} className="btn bg-green-600 hover:bg-green-700 text-xl font-bold py-3 mt-4">
+                    <button type="submit" className="btn bg-green-600 hover:bg-green-700 text-xl font-bold py-3 mt-4">
                         Confirm & Place Order
                     </button>
                 </form>
-                <button onClick={openModal} className="btn bg-blue-600 text-xl" >Notify</button>
 
                 {/* Modal opens only after placing order with valid details */}
                 <Modal
@@ -155,6 +156,7 @@ export default function PlaceOrder() {
                         <p>Our delivery agent will contact you soon.</p>
                         <p>Payment method: {formData.paymentMethod}</p>
                         <button onClick={() => setModalIsOpen(false)} className="btn bg-blue-500 w-20">Close</button>
+                        <button onClick={() => navigate("/Cart")} className="btn bg-blue-500 w-30">Go to Cart</button>
                     </div>
                 </Modal>
             </div>

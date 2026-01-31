@@ -19,13 +19,14 @@ export default function NotFound() {
         // start display error message after 10ms
         const errorTimer = setTimeout(() => {
             setShowError(true);
+            toast.error("Oops! you came to wrong route")
         }, 10);
 
         // display error message for 6 seconds
         const errorTimer2 = setTimeout(() => {
             setShowError(false);
             // toast notification
-            toast.info("Taking you back home", {
+            toast.success("Taking you back home...", {
                 duration: 5000,
             })
         }, 6000);

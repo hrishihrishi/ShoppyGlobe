@@ -26,7 +26,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    errorElement: <Suspense fallback={<Loader />}><NotFound /></Suspense>,
+    // errorElement: <Suspense ><NotFound /></Suspense>,
     children: [
       { path: '/Header', element: <Header /> },
       { path: '/ProductList', element: <Suspense fallback={<Loader />}><ProductList /></Suspense> },
