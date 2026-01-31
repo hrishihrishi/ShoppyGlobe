@@ -2,6 +2,8 @@ import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 import { useState } from "react"
 import { addCartItemsToOrderedItemsSlice } from "./redux/OrderedItemsSlice"
+import { toast } from "react-toastify"
+import Modal from "react-modal"
 
 export function CheckOut() {
 
@@ -29,7 +31,8 @@ export function CheckOut() {
         }))
 
         dispatch(addCartItemsToOrderedItemsSlice(updatedAllCartItems))
-        toast.success("Order placed successfully")
+        setIsModalOpen(true)
+        toast.success("Orders are placed successfully")
     }
 
 
